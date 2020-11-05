@@ -1,0 +1,38 @@
+.rowAtasKiri {
+    background-color:chartreuse;
+    border-style: solid;
+    /* border-right: none; */
+    border-top-left-radius: 50%;
+    border-color: black;
+    height: 130px;
+    /* margin-right: 100px;
+    padding-right: 100px; */
+    }
+/* .rowAtasKiri img{
+    margin-right: 100px;
+    padding-right: 100px;
+} */
+.rowAtasKanan {
+    background-color:chartreuse;
+    border-style: solid;
+    border-left: none;
+    border-top-right-radius: 50%;
+    border-color: black;
+    height: 130px;
+    }
+.rowBawahKiri {
+    /* background-color:chartreuse;
+    border-style: solid;
+    border-right: none;
+    border-bottom-left-radius: 50%;
+    border-color: black; */
+    height: 250px;
+    margin-top: -20px;
+}
+/* .rowBawahKanan {
+    border-style: solid;
+    border-left: none;
+    border-bottom-right-radius: 50%;
+    border-color: black;
+    height: 250px;
+} */

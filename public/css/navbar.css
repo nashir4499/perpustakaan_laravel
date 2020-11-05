@@ -1,0 +1,134 @@
+.navbar {
+    position: relative;
+    padding: 0 1rem;
+}
+
+.sidebar-toggle {
+    cursor: pointer;
+    width: 26px;
+    height: 26px;
+    margin-left: .5rem;
+}
+.mr-2, .mx-2 {
+    margin-right: .5rem!important;
+}
+
+a {
+    color: #3b7ddd;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.d-flex {
+    display: flex!important;
+}
+
+.hamburger {
+    position: relative;
+}
+.hamburger:before {
+    top: -6.5px;
+    width: 20px;
+    position: absolute;
+}
+.hamburger:after {
+    bottom: -6.5px;
+    width: 20px;
+    position: absolute;
+}
+.hamburger, .hamburger:after, .hamburger:before {
+    cursor: pointer;
+    height: 2px;
+    width: 20px;
+    background: hsla(0,0%,100%,.75);
+    /* background: white; */
+    display: block;
+    content: "";
+    transition: background .1s ease-in-out,color .1s ease-in-out;
+}
+.align-self-center {
+    align-self: center!important;
+}
+
+i {
+    font-style: italic;
+}
+
+/* Search */
+
+@media(min-width: 576px){
+    .d-sm-inline-block {
+        display: inline-block!important;
+    }
+}
+.form-inline {
+
+    flex-flow: row wrap;
+    align-items: center;
+}
+user agent stylesheet
+form {
+    display: block;
+    margin-top: 0em;
+}
+
+/* sebelah nya */
+.navbar-expand .navbar-collapse {
+    display: flex!important;
+    flex-basis: auto;
+}
+
+/* asfas */
+
+@media (min-width: 576px){
+    .form-inline .form-control {
+        display: inline-block;
+        width: auto;
+        vertical-align: middle;
+    }
+}
+.form-control-lite {
+    font-size: .9375rem;
+    font-weight: 400;
+    line-height: 1.5;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    color: #fff;
+}
+.form-control-lite:focus{
+    background: transparent;
+    color: #fff;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+.form-control-lite::placeholder{
+    color: rgb(172, 172, 172)
+}
+
+.nav-p{
+    font-size: .9375rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: rgb(172, 172, 172)
+}
+/* fdsfa */
+
+
+.navbar-expand .navbar-nav {
+    flex-direction: row;
+}
+.ml-auto, .mx-auto {
+    margin-left: auto!important;
+}
+.navbar-nav {
+    position: absolute;
+    right: 2%;
+    display: flex;
+    /* flex-direction: column; */
+    padding-left: 0;
+    bottom: 10px;
+    list-style: none;
+}

@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Kategori;
+use Illuminate\Support\Facades\Auth;
 
 class Kategoris extends Component
 {

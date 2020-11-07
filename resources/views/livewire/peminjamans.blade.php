@@ -1,3 +1,4 @@
+@section('title', 'Peminjaman')
 <div class="container-fluid">
     <div class="header">
         <h1 class="header-title">
@@ -71,23 +72,43 @@
                                             <button wire:click.prevent="sorting('ket_pengembalian','asc')"><i class="fas fa-sort"></i></button></th>
                                         @endif
                                     </th>
+                                    @if (Auth::user()->current_team_id===1)
                                     <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1"  aria-label="Opsi: activate to sort column ascending">Opsi</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($peminjamans as $pinjam)
                                     <tr role="row" class="odd">
                                         <td class="sorting_1 dtr-control">{{$loop->iteration}}</td>
-                                        <td>{{$pinjam->buku->nama}}</td>
+                                        <td>
+                                            @if (isset($pinjam->buku->nama))
+                                                {{$pinjam->buku->nama}}    
+                                            @else
+                                                <p style="color: red">Buku telah dihapus</p>
+                                            @endif
+                                            
+                                        </td>
                                         <td>{{$pinjam->members_id}}</td>
-                                        <td>{{$pinjam->member->nama}}</td>
+                                        <td>
+                                            @if (isset($pinjam->member->nama))
+                                                {{$pinjam->member->nama}}    
+                                            @else
+                                                <p style="color: red">Member dihapus</p>
+                                            @endif
+                                            
+                                        </td>
                                         <td>{{$pinjam->waktu_pengembalian}}</td>
                                         <td>{{$pinjam->created_at}}</td>
                                         <td>{{$pinjam->ket_pengembalian?'Sudah':'Belum'}}</td>
+                                        @if (Auth::user()->current_team_id===1)
                                         <td>
                                             {{-- <button wire:click="edit({{$pinjam->id}})" type="button" class="badge badge-primary" data-toggle="modal" data-target="#exampleModal">Edit</button> --}}
-                                            <button onclick="confirm('Yakin Ingin Menghapus Pinjaman {{$pinjam->member->nama}} Dengan Buku {{$pinjam->buku->nama}}?') || event.stopImmediatePropagation()" wire:click="delete({{$pinjam->id}})" type="button" class="badge badge-danger">Delete</button>
+                                            @if ($pinjam->ket_pengembalian)
+                                            <button onclick="confirm('Yakin Ingin Menghapus Pinjaman {{$pinjam->member->nama}} Dengan Buku {{$pinjam->buku->nama}}?') || event.stopImmediatePropagation()" wire:click="delete({{$pinjam->id}})" type="button" class="badge badge-danger">Delete</button>   
+                                            @endif
                                         </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>

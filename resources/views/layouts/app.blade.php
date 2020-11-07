@@ -5,7 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
+        <title>@yield('title')</title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -59,6 +60,16 @@
                                 <i class="align-middle mr-2 fas fa-fw fa-book"></i> <span class="align-middle">List Buku</span>
                             </a>
                         </li>
+
+                        @if (Auth::user()->current_team_id===2)
+                        <li class="sidebar-item">
+                            <a href="{{route('peminjaman')}}" class="sidebar-link">
+                                <i class="align-middle mr-2 fas fa-fw fa-bookmark"></i> <span class="align-middle">Peminjaman</span>
+                            </a>
+                        </li>
+                        @endif
+
+                        @if (Auth::user()->current_team_id===1)
                         <li class="sidebar-item">
                             <a href="{{route('kategori')}}" class="sidebar-link">
                                 <i class="align-middle mr-2 fas fa-fw fa-bookmark"></i> <span class="align-middle">List Kategori</span>
@@ -75,10 +86,19 @@
                             </ul>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{route('member')}}">
-                                <i class="align-middle mr-2 fas fa-fw fa-id-card-alt"></i> <span class="align-middle">Member</span>
+                            <a href="#user" data-toggle="collapse" class="sidebar-link collapsed">
+                                <i class="align-middle mr-2 fas fa-fw fa-id-card-alt"></i> <span class="align-middle">User</span>
                             </a>
+                            <ul id="user" class="sidebar-dropdown list-unstyled collapse ml-5" data-parent="#sidebar">
+                                <li class="sidebar-item"><a class="sidebar-link" href="{{route('member')}}">Member</a></li>
+                                <li class="sidebar-item"><a class="sidebar-link" href="{{route('petugas')}}">Petugas</a></li>
+                                {{-- <li class="sidebar-item"><a class="sidebar-link" href="{{route('petugas')}}">Petugas</a></li> --}}
+                            </ul>
+                            {{-- <a class="sidebar-link" href="{{route('member')}}">
+                                <i class="align-middle mr-2 fas fa-fw fa-id-card-alt"></i> <span class="align-middle">Member</span>
+                            </a> --}}
                         </li>
+                        @endif
 
                         <li class="sidebar-header">
                             Elements

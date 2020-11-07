@@ -1,7 +1,6 @@
-<x-guest-layout>
+{{-- <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            {{-- <x-jet-authentication-card-logo /> --}}
             <img width="70px" src="{{ asset('Logo.png') }}" />
         </x-slot>
 
@@ -41,4 +40,4 @@
             </div>
         </form>
     </x-jet-authentication-card>
-</x-guest-layout>
+</x-guest-layout> --}}

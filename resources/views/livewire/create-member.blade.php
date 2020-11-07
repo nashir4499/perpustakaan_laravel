@@ -10,14 +10,30 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <div class="form-group">
-                        <input wire:model="memberId" type="text" class="form-control" placeholder="ID">
-                        @error('memberId') <span class="text-danger">{{ $message }}</span>@enderror
+                    <div class="form-row">
+                        <div class="form-group col-sm-4">
+                            @if ($tbh == 0)
+                                <input wire:model="memberId" type="text" class="form-control" placeholder="ID" disabled>
+                                @error('memberId') <span class="text-danger">{{ $message }}</span>@enderror    
+                            @else    
+                                <input wire:model="memberId" type="text" class="form-control" placeholder="ID">
+                                @error('memberId') <span class="text-danger">{{ $message }}</span>@enderror
+                            @endif
+                        </div>
+                        <div class="form-group col-sm-8">
+                            <input type="text" class="form-control" placeholder="Nama Anggota" wire:model="nama" >
+                            @error('nama') <span class="text-danger">{{ $message }}</span>@enderror
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nama Anggota" wire:model="nama" >
-                        @error('nama') <span class="text-danger">{{ $message }}</span>@enderror
-                    </div>
+                    @if (session()->has('idNotNull'))
+                        <div class="alert alert-danger" style="margin-top:10px;">
+                            {{ session('idNotNull') }}
+                        </div>
+                    @endif
+                        <div class="form-group">
+                            <input wire:model="email" type="email" class="form-control" placeholder="Email">
+                            @error('email') <span class="text-danger">{{ $message }}</span>@enderror
+                        </div>
                     {{-- <div class="form-group">
                         <input type="text" class="form-control" placeholder="Kelas" wire:model="kelas" >
                         @error('kelas') <span class="text-danger">{{ $message }}</span>@enderror

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Date;
 
 class Homes extends Component
 {
+    // public $user;
     public $bukus, $members, $peminjamans, $pengembalian, $peminjam;
 
     public $bukusId, $bNama;

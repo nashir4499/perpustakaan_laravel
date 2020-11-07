@@ -1,3 +1,6 @@
+@section('title', 'Laporan')
+@if (Auth::user()->current_team_id===1)
+    
 <div class="container-fluid">
     <div class="header">
         <h1 class="header-title">
@@ -135,3 +138,8 @@
     </div>
 </div>
 
+@else
+<script>
+    window.location='/dashboard';
+</script>   
+@endif

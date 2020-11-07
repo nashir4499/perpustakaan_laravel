@@ -1,3 +1,4 @@
+@section('title', 'Profile')
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -35,9 +36,12 @@
 
             <x-jet-section-border />
 
+            @if (Auth::user()->current_team_id===1)
+                
             <div class="mt-10 sm:mt-0">
                 @livewire('profile.delete-user-form')
             </div>
+            @endif
         </div>
     </div>
 </x-app-layout>

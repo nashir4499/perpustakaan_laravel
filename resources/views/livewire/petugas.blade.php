@@ -1,16 +1,16 @@
-@section('title', 'Member')
+@section('title', 'Petugas')
 @if (Auth::user()->current_team_id===1)
     
 <div class="container-fluid">
     <div class="header">
         <h1 class="header-title">
-            List Member
+            List Peugas
         </h1>
         <button wire:click.prevent="tambah()" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
             Tambah
         </button>
         <!-- Modals -->
-        @include('livewire/create-member')
+        @include('livewire/create-petugas')
         @if (session()->has('info'))
             <div class="alert alert-success" style="margin-top:10px;">
                 {{ session('info') }}
@@ -22,7 +22,7 @@
             <div class="card">
                 <div class="card-header row">
                     <div class="col-sm-6">
-                        <h2><b>Tabel Member</b></h2>
+                        <h2><b>Tabel Petugas</b></h2>
                     </div>
                     <div class="col-sm-6">
                         <form class="form-inline d-flex justify-content-center md-form form-sm mt-0 search">
@@ -51,46 +51,30 @@
                                             <button wire:click.prevent="sorting('nama','asc')"><i class="fas fa-sort"></i></button></th>
                                         @endif
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1" aria-label="Kelas: activate to sort column ascending">Kelas
+                                    <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending">Email
                                         @if ($sort==="asc")
-                                            <button wire:click.prevent="sorting('kelas','desc')"><i class="fas fa-sort"></i></button></th>
+                                            <button wire:click.prevent="sorting('email','desc')"><i class="fas fa-sort"></i></button></th>
                                         @else
-                                            <button wire:click.prevent="sorting('kelas','asc')"><i class="fas fa-sort"></i></button></th>
+                                            <button wire:click.prevent="sorting('email','asc')"><i class="fas fa-sort"></i></button></th>
                                         @endif
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1"  aria-label="Tanggal Lahir: activate to sort column ascending">Tanggal Lahir
-                                        @if ($sort==="asc")
-                                            <button wire:click.prevent="sorting('tgl_lahir','desc')"><i class="fas fa-sort"></i></button></th>
-                                        @else
-                                            <button wire:click.prevent="sorting('tgl_lahir','asc')"><i class="fas fa-sort"></i></button></th>
-                                        @endif
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1"  aria-label="Alamat: activate to sort column ascending">Alamat
-                                        @if ($sort==="asc")
-                                            <button wire:click.prevent="sorting('alamat','desc')"><i class="fas fa-sort"></i></button></th>
-                                        @else
-                                            <button wire:click.prevent="sorting('alamat','asc')"><i class="fas fa-sort"></i></button></th>
-                                        @endif
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1"  aria-label="Foto: activate to sort column ascending">Foto</th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1"  aria-label="Opsi: activate to sort column ascending">Opsi</th>
+                                    {{-- <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1"  aria-label="Foto: activate to sort column ascending">Foto</th> --}}
+                                    {{-- <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1"  aria-label="Opsi: activate to sort column ascending">Opsi</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($members as $member)
+                                @foreach ($petugas as $ptgs)
                                     <tr role="row" class="odd">
                                         <td class="sorting_1 dtr-control">{{$loop->iteration}}</td>
-                                        <td>{{$member->id}}</td>
-                                        <td>{{$member->nama}}</td>
-                                        <td>{{$member->kelas}}</td>
-                                        <td>{{$member->tgl_lahir}}</td>
-                                        <td>{{$member->alamat}}</td>
-                                        {{-- <td><img src="{{ asset("storage/app/$member->foto") }}"></td> --}}
-                                        <td><img src="{{ asset("/storage/$member->foto") }}" width="50"></td>
+                                        <td>{{$ptgs->id}}</td>
+                                        <td>{{$ptgs->name}}</td>
+                                        <td>{{$ptgs->email}}</td>
+                                        {{-- <td><img src="{{ asset("storage/app/$ptgs->foto") }}"></td> --}}
+                                        {{-- <td><img src="{{ asset("/storage/$ptgs->foto") }}" width="50"></td> --}}
                                         <td>
-                                            <a href="{{route('memberPdf')}}" class="badge badge-warning">Cetak</a>
-                                            <button wire:click="edit({{$member->id}})" type="button" class="badge badge-primary" data-toggle="modal" data-target="#exampleModal">Edit</button>
-                                            <button onclick="confirm('Yakin Ingin Menghapus {{$member->nama}}?') || event.stopImmediatePropagation()" wire:click="delete({{$member->id}})" type="button" class="badge badge-danger">Delete</button>
+                                            {{-- <a href="{{route('ptgsPdf')}}" class="badge badge-warning">Cetak</a> --}}
+                                            {{-- <button wire:click="edit({{$ptgs->id}})" type="button" class="badge badge-primary" data-toggle="modal" data-target="#exampleModal">Edit</button>
+                                            <button onclick="confirm('Yakin Ingin Menghapus {{$ptgs->name}}?') || event.stopImmediatePropagation()" wire:click="delete({{$ptgs->id}})" type="button" class="badge badge-danger">Delete</button> --}}
                                         </td>
                                     </tr>
                                 @endforeach

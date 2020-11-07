@@ -1,3 +1,6 @@
+@section('title', 'Pengembalian')
+@if (Auth::user()->current_team_id===1)
+    
 <div class="container-fluid">
     <div class="header">
         <h1 class="header-title">
@@ -78,9 +81,21 @@
                                 @foreach ($pengembalians as $kembali)
                                     <tr role="row" class="odd">
                                         <td class="sorting_1 dtr-control">{{$loop->iteration}}</td>
-                                        <td>{{$kembali->buku->nama}}</td>
+                                        <td>
+                                            @if (isset($kembali->buku->nama))
+                                            {{$kembali->buku->nama}}
+                                            @else
+                                                <p style="color: red">Buku telah dihapus</p>
+                                            @endif
+                                        </td>
                                         <td>{{$kembali->members_id}}</td>
-                                        <td>{{$kembali->member->nama}}</td>
+                                        <td>
+                                            @if (isset($kembali->member->nama))
+                                                {{$kembali->member->nama}}    
+                                            @else
+                                                <p style="color: red">Member dihapus</p>
+                                            @endif
+                                        </td>
                                         <td>{{$kembali->deskripsi}}</td>
                                         <td>Rp {{$kembali->denda}}</td>
                                         <td>{{$kembali->tenggat_pengembalian}}</td>
@@ -99,4 +114,9 @@
         </div>
     </div>
 </div>
+@else
+<script>
+    window.location='/dashboard';
+</script>
+@endif
 

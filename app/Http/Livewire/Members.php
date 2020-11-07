@@ -5,6 +5,8 @@ namespace App\Http\Livewire;
 use Livewire\WithFileUploads;
 use Livewire\Component;
 use App\Models\Member;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use PDF;
 
 class Members extends Component
@@ -12,6 +14,8 @@ class Members extends Component
     use WithFileUploads;
     public $members;
     public $memberId, $nama, $kelas, $tgl_lahir, $alamat, $foto, $status, $noKelas;
+    public $tbh = 0;
+    public $email;
     public $cari;
     public $sortNama = null; //seperti setstate
     public $sort = 'asc'; //seperti setstate
@@ -54,6 +58,13 @@ class Members extends Component
         $this->status = null;
         $this->noKelas = null;
         $this->foto = null;
+        $this->email = null;
+        $this->tbh = 0;
+    }
+
+    public function tambah()
+    {
+        $this->tbh = 1;
     }
 
     public function store()
@@ -62,37 +73,89 @@ class Members extends Component
         $this->validate([
             'memberId' => 'required',
             'nama' => 'required',
+            'email' => 'required',
             'kelas' => 'required',
             'tgl_lahir' => 'required',
             'alamat' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,svg,jpg,gif|max:1024', // 1MB Max
+            'foto' => 'required|image|mimes:jpeg,png,svg,jpg,gif|max:2024', // 2MB Max
             'noKelas' => 'required',
         ]);
 
-        $namaFoto = $this->foto->storeAs('foto_member', "foto$this->memberId.png", 'public');
+        // $namaFoto = $this->foto->storeAs('foto_member', "foto$this->memberId.png", 'public');
 
-        Member::updateOrCreate(['id' => $this->memberId], [
-            'id' => $this->memberId,
-            'nama' => $this->nama,
-            'kelas' => $this->kelas,
-            'tgl_lahir' => $this->tgl_lahir,
-            'alamat' => $this->alamat,
-            'foto' => $namaFoto,
-            'status' => 1,
-        ]);
+        // Member::updateOrCreate(['id' => $this->memberId], [
+        //     'id' => $this->memberId,
+        //     'nama' => $this->nama,
+        //     'kelas' => $this->kelas,
+        //     'tgl_lahir' => $this->tgl_lahir,
+        //     'alamat' => $this->alamat,
+        //     'foto' => $namaFoto,
+        //     'status' => 1,
+        // ]);
 
-        session()->flash('info', $this->memberId ? 'Member Berhasil Diedit' : 'Member Berhasil Ditambah');
+        if ($this->tbh == 1) {
+            $cek = Member::find($this->memberId);
+            $pass = "member$this->memberId";
+            if ($cek === null) {
+                $namaFoto = $this->foto->storeAs('foto_member', "foto$this->memberId.png", 'public');
+                Member::create([
+                    'id' => $this->memberId,
+                    'nama' => $this->nama,
+                    'kelas' => $this->kelas,
+                    'tgl_lahir' => $this->tgl_lahir,
+                    'alamat' => $this->alamat,
+                    'foto' => $namaFoto,
+                    'status' => 1,
+                ]);
+                User::create([
+                    'id' => $this->memberId,
+                    'name' => $this->nama,
+                    'email' => $this->email,
+                    'password' => Hash::make($pass),
+                    'current_team_id' => 2,
+                ]);
 
-        $this->resetInputs();
+                session()->flash('info', $this->memberId ? 'Member Berhasil Diedit' : 'Member Berhasil Ditambah');
 
-        $this->emit('userStore'); // Close model to using to jquery
+                $this->resetInputs();
+
+                $this->emit('userStore'); // Close model to using to jquery
+
+            } else {
+                session()->flash('idNotNull', 'Member ID yang dimasukan telah digunakan');
+            }
+        } else {
+            $namaFoto = $this->foto->storeAs('foto_member', "foto$this->memberId.png", 'public');
+            Member::where('id', $this->memberId)
+                ->update([
+                    'nama' => $this->nama,
+                    'kelas' => $this->kelas,
+                    'tgl_lahir' => $this->tgl_lahir,
+                    'alamat' => $this->alamat,
+                    'foto' => $namaFoto,
+                    'status' => 1,
+                ]);
+            User::where('id', $this->memberId)
+                ->update([
+                    'name' => $this->nama,
+                    'email' => $this->email,
+                ]);
+
+            session()->flash('info', $this->memberId ? 'Member Berhasil Diedit' : 'Member Berhasil Ditambah');
+
+            $this->resetInputs();
+
+            $this->emit('userStore'); // Close model to using to jquery
+        }
     }
 
     public function edit($id)
     {
         $member = Member::findOrFail($id);
+        $user = User::findOrFail($id);
         $this->memberId = $id;
         $this->nama = $member->nama;
+        $this->email = $user->email;
         $this->noKelas = substr("$member->kelas", 0, 1);
         $this->kelas = $member->kelas;
         $this->tgl_lahir = $member->tgl_lahir;
@@ -103,16 +166,20 @@ class Members extends Component
 
     public function delete($id)
     {
-        $idMember = Member::find($id);
-        $idMember->status = 0;
-        $idMember->save();
+        Member::find($id)->delete();
+        User::find($id)->delete();
+        // $idMember = Member::find($id);
+        // $idMember->status = 0;
+        // $idMember->save();
     }
 
     public function cetakKartuPdf()
     {
         $date = date('Y-m-d');
         $member = Member::findOrFail(1706067);
-        $ukuran = array(0, 0, 865, 539);
+        // $ukuran = array(0, 0, 865, 539);
+        $ukuran = array(0, 0, 380, 539);
+        // $ukuran = array(0, 0, 158.74, 243.78);
 
         // $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])
         // $pdf = PDF::loadView('memberpdf', ['member' => $member])->setPaper('letter', 'landscape');

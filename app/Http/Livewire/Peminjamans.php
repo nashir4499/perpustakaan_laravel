@@ -103,13 +103,16 @@ class Peminjamans extends Component
     public function delete($id)
     {
         $pinjaman = Peminjaman::findOrFail($id);
-        if ($pinjaman->ket_pengembalian === 0) {
-            $stokBuku = Buku::find($pinjaman->bukus_id);
-            $stokBuku->stok = $stokBuku->stok + 1;
-            $stokBuku->save();
-            Peminjaman::find($id)->delete();
-        } else {
+        if ($pinjaman->ket_pengembalian === 1) {
             Peminjaman::find($id)->delete();
         }
+        // if ($pinjaman->ket_pengembalian === 0) {
+        //     $stokBuku = Buku::find($pinjaman->bukus_id);
+        //     $stokBuku->stok = $stokBuku->stok + 1;
+        //     $stokBuku->save();
+        //     Peminjaman::find($id)->delete();
+        // } else {
+        //     Peminjaman::find($id)->delete();
+        // }
     }
 }

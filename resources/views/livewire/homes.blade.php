@@ -1,3 +1,4 @@
+@section('title', 'Dashboard')
 <div class="container-fluid">
     <div class="header text-center">
         <h1 class="header-title">
@@ -14,6 +15,8 @@
             </div>
         @endif
     </div>
+    @if (Auth::user()->current_team_id===1)
+    
     <div class="row">
         <div class="col-sm 6">
             <div class="card">
@@ -148,3 +151,19 @@
 @livewireScripts
 <script src=https://cdnjs.cloudflare.com/ajax/libs/echarts/4.0.2/echarts-en.min.js charset=utf-8></script>
         {!! $pinjamChart->script() !!}
+    @else
+    <div class="row">
+        <div class="col-sm-10 offset-1">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h2><b>Selamat Datang</b></h2>
+                </div>
+                <div class="card-body">
+                    <h3>Selamat datang disistem informasi perpustakaan SMP Negeri 1 Banyuresmi. Dengan adanya sistem informasi ini diharapkan para siswa dapat menambah wawasan dengan buku-buku yang ada di perpustakaan SMP Negeri 1 Banyuresmi.</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+    @endif

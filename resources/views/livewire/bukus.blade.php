@@ -1,3 +1,4 @@
+@section('title', 'List Buku')
 <div class="container-fluid">
     <div class="header">
         <h1 class="header-title">
@@ -77,7 +78,9 @@
                                             <button wire:click.prevent="sorting('rusak','asc')"><i class="fas fa-sort"></i></button></th>
                                         @endif
                                     </th>
+                                    @if (Auth::user()->current_team_id===1)
                                     <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1" aria-label="Opsi: activate to sort column ascending">Opsi</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,11 +94,13 @@
                                         <td>{{$buku->jumlah}}</td>
                                         <td>{{$buku->stok}}</td>
                                         <td>{{$buku->rusak}}</td>
+                                        @if (Auth::user()->current_team_id===1)  
                                         <td>
                                             <button wire:click="edit({{$buku->id}})" type="button" class="badge badge-primary" data-toggle="modal" data-target="#exampleModal">Edit</button>
                                             <button onclick="confirm('Yakin Ingin Menghapus {{$buku->nama}}?') || event.stopImmediatePropagation()" wire:click="delete({{$buku->id}})" type="button" class="badge badge-danger">Delete</button>
 
                                         </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>

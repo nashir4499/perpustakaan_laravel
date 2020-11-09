@@ -29,6 +29,7 @@
 .sidebar-user img {
     width: 64px;
     height: 64px;
+
 }
 .mb-2, .my-2 {
     margin-bottom: .5rem!important;
@@ -38,7 +39,9 @@
 }
 .img-fluid, .img-thumbnail {
     max-width: 100%;
-    height: auto;
+    display: block;
+    margin: 0 auto;
+    /* height: auto; */
 }
 img, svg {
     vertical-align: middle;

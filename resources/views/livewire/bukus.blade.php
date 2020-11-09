@@ -4,9 +4,11 @@
         <h1 class="header-title">
             List Buku
         </h1>
+        @if (Auth::user()->current_team_id===1)
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
             Tambah
         </button>
+        @endif
         <!-- Modals -->
         @include('livewire/create-buku')
         @if (session()->has('info'))
@@ -94,7 +96,7 @@
                                         <td>{{$buku->jumlah}}</td>
                                         <td>{{$buku->stok}}</td>
                                         <td>{{$buku->rusak}}</td>
-                                        @if (Auth::user()->current_team_id===1)  
+                                        @if (Auth::user()->current_team_id===1)
                                         <td>
                                             <button wire:click="edit({{$buku->id}})" type="button" class="badge badge-primary" data-toggle="modal" data-target="#exampleModal">Edit</button>
                                             <button onclick="confirm('Yakin Ingin Menghapus {{$buku->nama}}?') || event.stopImmediatePropagation()" wire:click="delete({{$buku->id}})" type="button" class="badge badge-danger">Delete</button>

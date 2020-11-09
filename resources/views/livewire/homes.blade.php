@@ -16,7 +16,7 @@
         @endif
     </div>
     @if (Auth::user()->current_team_id===1)
-    
+
     <div class="row">
         <div class="col-sm 6">
             <div class="card">
@@ -156,10 +156,10 @@
         <div class="col-sm-10 offset-1">
             <div class="card">
                 <div class="card-header text-center">
-                    <h2><b>Selamat Datang</b></h2>
+                    <h1 style="font-size: 30px"><b>Selamat Datang</b></h1>
                 </div>
-                <div class="card-body">
-                    <h3>Selamat datang disistem informasi perpustakaan SMP Negeri 1 Banyuresmi. Dengan adanya sistem informasi ini diharapkan para siswa dapat menambah wawasan dengan buku-buku yang ada di perpustakaan SMP Negeri 1 Banyuresmi.</h3>
+                <div class="card-body text-center">
+                    <p class="tulisan">Selamat datang di Sistem Informasi Perpustakaan SMP Negeri 1 Banyuresmi. <br> Dengan adanya sistem informasi ini diharapkan para siswa dapat menambah wawasan dengan buku-buku yang ada di perpustakaan SMP Negeri 1 Banyuresmi.</p>
                 </div>
             </div>
         </div>

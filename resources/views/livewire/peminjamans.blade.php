@@ -25,7 +25,7 @@
                     <div class="col-sm-4">
                         <form class="form-inline d-flex justify-content-center md-form form-sm mt-0 search">
                             <i class="fas fa-search" aria-hidden="true"></i>
-                            <input wire:model="cari" class="form-control form-control-sm ml-3 w-50" type="text" placeholder="ID buku atau member" aria-label="Search">
+                            <input wire:model="cari" class="form-control form-control-sm ml-3 w-50" type="text" placeholder="Kode buku atau member" aria-label="Search">
                         </form>
                     </div>
                     <div class="col-sm-4">
@@ -83,20 +83,20 @@
                                         <td class="sorting_1 dtr-control">{{$loop->iteration}}</td>
                                         <td>
                                             @if (isset($pinjam->buku->nama))
-                                                {{$pinjam->buku->nama}}    
+                                                {{$pinjam->buku->nama}}
                                             @else
                                                 <p style="color: red">Buku telah dihapus</p>
                                             @endif
-                                            
+
                                         </td>
                                         <td>{{$pinjam->members_id}}</td>
                                         <td>
                                             @if (isset($pinjam->member->nama))
-                                                {{$pinjam->member->nama}}    
+                                                {{$pinjam->member->nama}}
                                             @else
                                                 <p style="color: red">Member dihapus</p>
                                             @endif
-                                            
+
                                         </td>
                                         <td>{{$pinjam->waktu_pengembalian}}</td>
                                         <td>{{$pinjam->created_at}}</td>
@@ -105,7 +105,7 @@
                                         <td>
                                             {{-- <button wire:click="edit({{$pinjam->id}})" type="button" class="badge badge-primary" data-toggle="modal" data-target="#exampleModal">Edit</button> --}}
                                             @if ($pinjam->ket_pengembalian)
-                                            <button onclick="confirm('Yakin Ingin Menghapus Pinjaman {{$pinjam->member->nama}} Dengan Buku {{$pinjam->buku->nama}}?') || event.stopImmediatePropagation()" wire:click="delete({{$pinjam->id}})" type="button" class="badge badge-danger">Delete</button>   
+                                            <button onclick="confirm('Yakin Ingin Menghapus Pinjaman {{$pinjam->member->nama}} Dengan Buku {{$pinjam->buku->nama}}?') || event.stopImmediatePropagation()" wire:click="delete({{$pinjam->id}})" type="button" class="badge badge-danger">Delete</button>
                                             @endif
                                         </td>
                                         @endif

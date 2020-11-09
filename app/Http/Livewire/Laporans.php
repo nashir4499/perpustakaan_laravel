@@ -74,7 +74,16 @@ class Laporans extends Component
         if ($this->laporan !== 0) {
             session()->flash('info', 'Laporan Telah Di Update');
         } else {
-            foreach ($this->kategoris as $kategori) {
+            // foreach ($this->kategoris as $kategori) {
+            //     Laporan::create([
+            //         'nama' => $kategori->nama,
+            //         'kategoris_id' => $kategori->id,
+            //         'nilai' => $this->nilai($kategori->id),
+            //     ]);
+            // }
+
+            for ($i = 1; $i <= 5; $i++) {
+                $kategori = Kategori::find($i);
                 Laporan::create([
                     'nama' => $kategori->nama,
                     'kategoris_id' => $kategori->id,

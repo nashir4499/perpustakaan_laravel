@@ -15,15 +15,15 @@ class KategoriSeeder extends Seeder
     public function run()
     {
         DB::table('kategoris')->insert([
-            'name' => 'Paket',
+            'nama' => 'Paket',
         ], [
-            'name' => 'Pengayaan',
+            'nama' => 'Pengayaan',
         ], [
-            'name' => 'Cerpen',
+            'nama' => 'Cerpen',
         ], [
-            'name' => 'Referensi',
+            'nama' => 'Referensi',
         ], [
-            'name' => 'Surat Kabar',
+            'nama' => 'Surat Kabar',
         ]);
     }
 }

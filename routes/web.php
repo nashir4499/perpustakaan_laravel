@@ -39,6 +39,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/laporan', Laporans::class)->name('laporan');
     Route::get('/dashboard', Homes::class)->name('dashboard');
     Route::get('/laporan/pdf', [Laporans::class, 'cetak_pdf'])->name('laporanPdf');
-    // Route::get('/member/pdf/{id}', [Members::class, 'cetak_pdf'])->name('memberPdf');
-    Route::get('/member/pdf', [Members::class, 'cetakKartuPdf'])->name('memberPdf');
+    Route::get('/member/pdf/{id}', [Members::class, 'cetakKartuPdf'])->name('memberPdf');
+    // Route::get('/member/pdf', [Members::class, 'cetakKartuPdf'])->name('memberPdf');
 });

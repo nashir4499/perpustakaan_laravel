@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('123123123'),
+            'current_team_id' => 1,
         ]);
     }
 }

@@ -20,14 +20,15 @@
                 <th class="sorting text-center" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="8"  aria-label="Buku Perpustakaan: activate to sort column ascending">Buku Perpustakaan</th>
             </tr>
             <tr role="row">
-                    @foreach ($kategoris as $kategori)
+                @foreach ($kategoris as $kategori)
 
-                <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1"  aria-label="{{$kategori->nama}}: activate to sort column ascending">{{$kategori->nama}}</th>
-                    @endforeach
-                                    {{-- <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1" aria-label="Pengayaan: activate to sort column ascending">Pengayaan</th>
+                {{-- <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1"  aria-label="{{$kategori->nama}}: activate to sort column ascending">{{$kategori->nama}}</th> --}}
+                @endforeach
+                <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1" aria-label="Paket: activate to sort column ascending">Paket</th>
+                <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1" aria-label="Pengayaan: activate to sort column ascending">Pengayaan</th>
                 <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1"  aria-label="Cerpen: activate to sort column ascending">Cerpen</th>
                 <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1"  aria-label="Referensi: activate to sort column ascending">Referensi</th>
-                <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1"  aria-label="Surat Kabar: activate to sort column ascending">Surat Kabar</th> --}}
+                <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1"  aria-label="Surat Kabar: activate to sort column ascending">Surat Kabar</th>
                 <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1"  aria-label="Buku Yang Baik: activate to sort column ascending">Buku Yang Baik</th>
                 <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1"  aria-label="Buku Rusak: activate to sort column ascending">Buku Rusak</th>
                 <th class="sorting" tabindex="0" aria-controls="datatables-basic" rowspan="1" colspan="1"  aria-label="Jumlah: activate to sort column ascending">Jumlah</th>

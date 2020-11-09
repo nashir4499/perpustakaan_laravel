@@ -173,10 +173,10 @@ class Members extends Component
         // $idMember->save();
     }
 
-    public function cetakKartuPdf()
+    public function cetakKartuPdf($id)
     {
         $date = date('Y-m-d');
-        $member = Member::findOrFail(1706067);
+        $member = Member::findOrFail($id);
         // $ukuran = array(0, 0, 865, 539);
         $ukuran = array(0, 0, 380, 539);
         // $ukuran = array(0, 0, 158.74, 243.78);

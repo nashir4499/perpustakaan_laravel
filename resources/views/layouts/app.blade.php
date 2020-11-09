@@ -44,9 +44,10 @@
 
                 <div class="sidebar-content">
                     <div class="sidebar-user">
-                        <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" class="img-fluid rounded-circle mb-2" style="margin-left: 30px">
+                        {{-- <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" class="img-fluid rounded-circle mb-2" style="margin-left: 30px"> --}}
+                        <img class="h-8 w-8 rounded-full object-cover img-fluid" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}"/>
                         <div class="font-weight-bold">{{ Auth::user()->name }}</div>
-                        <small>Front-end Developer</small>
+                        {{-- <small>Front-end Developer</small> --}}
                     </div>
 
                     <ul class="sidebar-nav">
@@ -55,7 +56,7 @@
                         </li>
                         <li class="sidebar-item">
                             <a href="{{route('dashboard')}}" class="sidebar-link" :active="request()->routeIs('dashboard')">
-                                <i class="align-middle mr-2 fas fa-fw fa-home"></i> <span class="align-middle">Dashboards</span>
+                                <i class="align-middle mr-2 fas fa-fw fa-home"></i> <span class="align-middle">Dashboard</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -115,14 +116,25 @@
                             Extras
                         </li>
                         <li class="sidebar-item">
-                            <a href="#layouts" class="sidebar-link">
-                                <i class="align-middle mr-2 fas fa-fw fa-sign-out-alt"></i> <span class="align-middle">Logout</span>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                        this.closest('form').submit();" class="sidebar-link">
+                                <i class="align-middle mr-2 fas fa-fw fa-sign-out-alt"></i>{{ __('Logout') }}
                             </a>
+                        </form>
                         </li>
+                        {{-- <li class="sidebar-item">
+                            <a href="#layouts" class="sidebar-link">
+                                <i class="align-middle mr-2 fas fa-fw fa-sign-out-alt"></i>
+                                <span class="align-middle">Logout</span>
+                            </a>
+                        </li> --}}
                     </ul>
                 </div>
 
-               
+
             </nav>
 
 

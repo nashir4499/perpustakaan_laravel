@@ -88,7 +88,7 @@
                                         {{-- <td><img src="{{ asset("storage/app/$member->foto") }}"></td> --}}
                                         <td><img src="{{ asset("/storage/$member->foto") }}" width="50"></td>
                                         <td>
-                                            <a href="{{route('memberPdf')}}" class="badge badge-warning">Cetak</a>
+                                            <a href="{{route('memberPdf', ['id' => $member->id])}}" class="badge badge-warning">Cetak</a>
                                             <button wire:click="edit({{$member->id}})" type="button" class="badge badge-primary" data-toggle="modal" data-target="#exampleModal">Edit</button>
                                             <button onclick="confirm('Yakin Ingin Menghapus {{$member->nama}}?') || event.stopImmediatePropagation()" wire:click="delete({{$member->id}})" type="button" class="badge badge-danger">Delete</button>
                                         </td>

@@ -15,9 +15,9 @@ class CurrentTeamSeeder extends Seeder
     public function run()
     {
         DB::table('current_team')->insert([
-            'name' => 'Admin',
+            'nama' => 'Admin',
         ], [
-            'name' => 'User',
+            'nama' => 'User',
         ]);
     }
 }
